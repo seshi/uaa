@@ -164,8 +164,11 @@ public class SamlKeyRotationMockMvcTests extends InjectedMockContextTest {
     }
 
     public String getMetadata() throws Exception {
+        return getMetadata("/saml/metadata");
+    }
+    public String getMetadata(String uri) throws Exception {
         return getMockMvc().perform(
-            get("/saml/metadata")
+            get(uri)
                 .header("Host", zone.getSubdomain()+".localhost")
                 .accept(APPLICATION_XML)
         )
